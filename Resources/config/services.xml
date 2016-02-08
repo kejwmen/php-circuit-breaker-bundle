@@ -31,9 +31,8 @@
         <!-- circuit breaker service with cache backend -->
         <service id="circuitBreaker"
                  class="%ejsmont_circuit_breaker.class%"
-                 factory-class="%ejsmont_circuit_breaker_factory.class%"
-                 factory-method="getDoctrineCacheInstance"
         >
+            <factory class="%ejsmont_circuit_breaker_factory.class%" method="getDoctrineCacheInstance" />
             <argument type="service" id="circuitBreakerCacheBackend"/>
             <argument>%ejsmont_circuit_breaker.threshold%</argument>
             <argument>%ejsmont_circuit_breaker.retry_timeout%</argument>
@@ -42,9 +41,8 @@
         <!-- circuit breaker service with default APC backend (if you dont use doctrine cache yet) -->
         <service id="apcCircuitBreaker"
                  class="%ejsmont_circuit_breaker.class%"
-                 factory-class="%ejsmont_circuit_breaker_factory.class%"
-                 factory-method="getSingleApcInstance"
         >
+            <factory class="%ejsmont_circuit_breaker_factory.class%" method="getSingleApcInstance" />
             <argument>%ejsmont_circuit_breaker.threshold%</argument>
             <argument>%ejsmont_circuit_breaker.retry_timeout%</argument>
         </service>
